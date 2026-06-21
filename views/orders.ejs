@@ -1,0 +1,74 @@
+<%- include("partials/header") %>
+
+<h1 class="section-title">
+    My Orders
+</h1>
+
+<% if(orders.length === 0){ %>
+
+    <div class="empty-orders">
+        <h3>No Orders Yet</h3>
+        <p>Start shopping and place your first order.</p>
+    </div>
+
+<% } else { %>
+
+    <% orders.forEach(order => { %>
+
+        <div class="order-card">
+
+            <div class="order-header">
+
+                <div>
+                    <h3>
+                        Order Total: ₹<%= order.totalAmount %>
+                    </h3>
+
+                    <p>
+                        Date:
+                        <%= order.createdAt.toDateString() %>
+                    </p>
+                </div>
+
+                <form
+                    action="/orders/delete/<%= order._id %>"
+                    method="POST"
+                >
+                    <button
+                        class="btn delete-btn"
+                        type="submit"
+                    >
+                        Delete Order
+                    </button>
+                </form>
+
+            </div>
+
+            <hr>
+
+            <% order.items.forEach(item => { %>
+
+                <div class="order-item">
+
+                    <p>
+                        <strong>
+                            <%= item.product.name %>
+                        </strong>
+                    </p>
+
+                    <p>
+                        Quantity:
+                        <%= item.quantity %>
+                    </p>
+
+                </div>
+
+            <% }) %>
+
+        </div>
+
+    <% }) %>
+
+<% } %>
+
+<%- include("partials/footer") %>

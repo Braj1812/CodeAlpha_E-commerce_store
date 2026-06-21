@@ -1,0 +1,65 @@
+<%- include("partials/header") %>
+
+<section class="hero">
+
+    <h1>Welcome to ShopEasy</h1>
+
+    <p>
+        Discover the latest products at amazing prices.
+    </p>
+
+</section>
+
+<h2 class="section-title">
+    Featured Products
+</h2>
+
+<div class="products-grid">
+
+    <% if(products.length === 0){ %>
+
+        <div class="empty-products">
+            <h3>No Products Found</h3>
+        </div>
+
+    <% } %>
+
+    <% products.forEach(product => { %>
+
+        <div class="product-card">
+
+            <img
+                src="<%= product.image %>"
+                alt="<%= product.name %>"
+            >
+
+            <div class="product-content">
+
+                <h3>
+                    <%= product.name %>
+                </h3>
+
+                <p class="product-category">
+                    <%= product.category %>
+                </p>
+
+                <p class="product-price">
+                    ₹<%= product.price %>
+                </p>
+
+                <a
+                    href="/product/<%= product._id %>"
+                    class="btn"
+                >
+                    View Details
+                </a>
+
+            </div>
+
+        </div>
+
+    <% }) %>
+
+</div>
+
+<%- include("partials/footer") %>

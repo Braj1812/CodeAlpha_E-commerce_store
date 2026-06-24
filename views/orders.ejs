@@ -48,20 +48,41 @@
 
             <% order.items.forEach(item => { %>
 
-                <div class="order-item">
+                <% if(item.product){ %>
 
-                    <p>
-                        <strong>
-                            <%= item.product.name %>
-                        </strong>
-                    </p>
+                    <div class="order-item">
 
-                    <p>
-                        Quantity:
-                        <%= item.quantity %>
-                    </p>
+                        <p>
+                            <strong>
+                                <%= item.product.name %>
+                            </strong>
+                        </p>
 
-                </div>
+                        <p>
+                            Quantity:
+                            <%= item.quantity %>
+                        </p>
+
+                    </div>
+
+                <% } else { %>
+
+                    <div class="order-item">
+
+                        <p>
+                            <strong>
+                                Product Removed
+                            </strong>
+                        </p>
+
+                        <p>
+                            Quantity:
+                            <%= item.quantity %>
+                        </p>
+
+                    </div>
+
+                <% } %>
 
             <% }) %>
 
